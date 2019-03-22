@@ -1,15 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {PagesComponent} from './pages.component';
+import {UsersComponent} from './users.component';
 
 const routes: Routes = [{
   path: '',
-  component: PagesComponent,
-  children: [{
-    path: 'users',
-    loadChildren: './users/users.module#UsersModule'
-  }]
+  component: UsersComponent,
+  children: []
 }];
 
 @NgModule({
@@ -22,4 +19,4 @@ const routes: Routes = [{
     RouterModule
   ]
 })
-export class PagesRoutingModule { }
+export class UsersRoutingModule { }

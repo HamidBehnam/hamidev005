@@ -5,7 +5,7 @@ const routes: Routes = [{
   path: 'auth',
   loadChildren: './auth/auth.module#AuthModule'
 }, {
-  path: '**',
+  path: '',
   loadChildren: './pages/pages.module#PagesModule'
 }];
 
