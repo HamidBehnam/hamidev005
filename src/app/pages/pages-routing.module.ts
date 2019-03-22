@@ -7,8 +7,8 @@ const routes: Routes = [{
   path: '',
   component: PagesComponent,
   children: [{
-    path: 'users',
-    loadChildren: './users/users.module#UsersModule'
+    path: 'people',
+    loadChildren: './people/people.module#PeopleModule'
   }]
 }];
 
