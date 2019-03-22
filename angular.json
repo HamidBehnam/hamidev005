@@ -137,5 +137,10 @@
       }
     }
   },
-  "defaultProject": "hamidev005"
+  "defaultProject": "hamidev005",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }
