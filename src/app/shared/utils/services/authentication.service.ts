@@ -7,13 +7,13 @@ import {Subject} from 'rxjs';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private _loggedInUser: object;
+  private _authenticatedUser: object;
   private _userDataIsLoaded: boolean;
   private _userDataAnnouncer: Subject<boolean>;
 
   constructor(private angularFireAuth: AngularFireAuth) {
 
-    this._loggedInUser = null;
+    this._authenticatedUser = null;
     this._userDataIsLoaded = false;
     this.init();
   }
@@ -24,12 +24,12 @@ export class AuthenticationService {
 
     this.angularFireAuth.user.subscribe(result => {
 
-      this._loggedInUser = result;
+      this._authenticatedUser = result;
       this._userDataIsLoaded = true;
       this._userDataAnnouncer.next(!!result);
     }, () => {
 
-      this._loggedInUser = null;
+      this._authenticatedUser = null;
       this._userDataIsLoaded = true;
       this._userDataAnnouncer.next(false);
     });
@@ -39,16 +39,16 @@ export class AuthenticationService {
     return this._userDataIsLoaded;
   }
 
-  get userIsLoggedIn(): boolean {
-    return !!this._loggedInUser;
+  get userIsAuthenticated(): boolean {
+    return !!this._authenticatedUser;
   }
 
   get userDataAnnouncer(): Subject<boolean> {
     return this._userDataAnnouncer;
   }
 
-  get loggedInUser(): object {
-    return this._loggedInUser;
+  get authenticatedUser(): object {
+    return this._authenticatedUser;
   }
 
   signInGoogle() {

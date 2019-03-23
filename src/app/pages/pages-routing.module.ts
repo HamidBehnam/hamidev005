@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {PagesComponent} from './pages.component';
+import {LoggedInGuard} from '../shared/utils/services/logged-in.guard';
 
 const routes: Routes = [{
   path: '',
@@ -11,7 +12,8 @@ const routes: Routes = [{
     loadChildren: './people/people.module#PeopleModule'
   }, {
     path: 'organizations',
-    loadChildren: './organizations/organizations.module#OrganizationsModule'
+    loadChildren: './organizations/organizations.module#OrganizationsModule',
+    canActivate: [LoggedInGuard]
   }]
 }];
 

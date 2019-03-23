@@ -1,11 +1,11 @@
 :host {
-  .sign-in-buttons-holder {
+  .stack-buttons-holder {
     display: flex;
     justify-content: center;
     flex-direction: column;
   }
 
-  .sign-in-button {
+  .stack-button {
     margin-bottom: 10px
   }
 }

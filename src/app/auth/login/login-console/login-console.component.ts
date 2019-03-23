@@ -8,7 +8,7 @@ import {AuthenticationService} from '../../../shared/utils/services/authenticati
 })
 export class LoginConsoleComponent implements OnInit {
 
-  constructor(public authentication: AuthenticationService) { }
+  constructor(private authentication: AuthenticationService) { }
 
   ngOnInit() {
   }
