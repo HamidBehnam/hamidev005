@@ -1,18 +1,15 @@
-<!--<nb-card>-->
-<!--<nb-card-header class="row justify-content-center">Login with your Google account</nb-card-header>-->
-<!--<nb-card-body class="row justify-content-center">-->
-
-<!--<button nbButton outline status="danger">Google Sign In</button>-->
-
-<!--</nb-card-body>-->
-<!--</nb-card>-->
 <div class="row justify-content-center">
-  <div class="col-sm-4">
+  <div class="col-sm-4" *ngIf="authentication.userDataIsLoaded && !authentication.userIsLoggedIn">
     <div class="sign-in-buttons-holder">
-      <button size="xsmall" class="sign-in-button" nbButton outline status="danger">Google Sign In</button>
-      <button size="xsmall" class="sign-in-button" nbButton outline status="info">Twitter Sign In</button>
-      <button size="xsmall" class="sign-in-button" nbButton outline status="primary">Facebook Sign In</button>
-      <button size="xsmall" class="sign-in-button" nbButton outline status="primary">Email Sign In</button>
+      <button size="xsmall" class="sign-in-button" nbButton outline status="danger" (click)="signInGoogle()">Google Sign In</button>
+      <button size="xsmall" class="sign-in-button" nbButton outline status="info" [disabled]="true">Twitter Sign In</button>
+      <button size="xsmall" class="sign-in-button" nbButton outline status="primary" [disabled]="true">Facebook Sign In</button>
+      <button size="xsmall" class="sign-in-button" nbButton outline status="primary" [disabled]="true">Email Sign In</button>
+    </div>
+  </div>
+  <div class="col-sm-4" *ngIf="authentication.userDataIsLoaded && authentication.userIsLoggedIn">
+    <div class="sign-in-buttons-holder">
+      <button size="xsmall" class="sign-in-button" nbButton outline status="danger" (click)="signOut()">Sign Out</button>
     </div>
   </div>
 </div>

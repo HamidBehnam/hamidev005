@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthenticationService} from '../../../shared/utils/services/authentication.service';
 
 @Component({
   selector: 'app-login-console',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginConsoleComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authentication: AuthenticationService) { }
 
   ngOnInit() {
   }
 
+  signInGoogle() {
+    this.authentication.signInGoogle();
+  }
+
+  signOut() {
+    this.authentication.signOut();
+  }
 }
