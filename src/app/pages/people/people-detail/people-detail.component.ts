@@ -4,7 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 @Component({
   selector: 'app-people-detail',
   templateUrl: './people-detail.component.html',
-  styleUrls: ['./people-detail.component.sass']
+  styleUrls: ['./people-detail.component.scss']
 })
 export class PeopleDetailComponent implements OnInit {
   personId: number;
