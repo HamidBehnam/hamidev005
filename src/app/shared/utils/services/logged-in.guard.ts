@@ -9,36 +9,29 @@ import {ProtectedContentModalComponent} from '../../protected-content-modal/prot
   providedIn: 'root'
 })
 export class LoggedInGuard implements CanActivate {
-  userDataIsLoaded: boolean;
-  userIsAuthenticated: boolean;
-  userDataAnnouncer: Subject<boolean>;
 
-  constructor(private authentication: AuthenticationService, private router: Router, private dialogService: NbDialogService) {
-    this.userDataIsLoaded = this.authentication.userDataIsLoaded;
-    this.userIsAuthenticated = this.authentication.userIsAuthenticated;
-    this.userDataAnnouncer = this.authentication.userDataAnnouncer;
-  }
+  constructor(private authentication: AuthenticationService, private router: Router, private dialogService: NbDialogService) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-    if (this.userDataIsLoaded) {
+    if (this.authentication.userDataIsLoaded) {
 
-      if (!this.userIsAuthenticated) {
+      if (!this.authentication.userIsAuthenticated) {
         this.navigateAndShowProtectedContentModal();
       }
 
-      return this.userIsAuthenticated;
+      return this.authentication.userIsAuthenticated;
     } else {
 
-      this.userDataAnnouncer.subscribe(result => {
+      this.authentication.userDataAnnouncer.subscribe(result => {
         if (!result) {
           this.navigateAndShowProtectedContentModal();
         }
       });
 
-      return this.userDataAnnouncer;
+      return this.authentication.userDataAnnouncer;
     }
   }
 
