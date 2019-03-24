@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { AuthComponent } from './auth.component';
 import {AuthRoutingModule} from './auth-routing.module';
 import {NbLayoutModule} from '@nebular/theme';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   declarations: [AuthComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
-    NbLayoutModule
+    NbLayoutModule,
+    SharedModule
   ]
 })
 export class AuthModule { }
