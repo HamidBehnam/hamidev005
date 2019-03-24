@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {LogoInformationDirective} from '../shared/utils/directives/logo-information.directive';
 
 @Component({
@@ -6,19 +6,20 @@ import {LogoInformationDirective} from '../shared/utils/directives/logo-informat
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent implements OnInit, AfterViewInit {
   // this way we can programmatically access the Directive
   @ViewChild('logoInformation') logoInformation: LogoInformationDirective;
 
   constructor() { }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.logoInformation.printInformation();
-    }, 5000);
   }
 
   uiProcessorFinished(event) {
     console.log('long-running UI processor finished: ', event);
+  }
+
+  ngAfterViewInit(): void {
+    this.logoInformation.printInformation();
   }
 }
