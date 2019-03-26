@@ -1,12 +1,18 @@
 <div class="jumbotron mb-0">
+  <div class="app-logo-holder"
+       [appLogoInformation]="'Application Logo'"
+       [additionalInformation]="'Additional Information'"
+       (processorFinished)="onProcessorFinished($event)"
+       #logoInformation="appLogoInformation">
+    <img class="app-logo" [src]="'assets/logo/logo.png'">
+  </div>
 
-  <h1 class="row justify-content-center">
-    <div [appLogoInformation]="'Application Logo'"
-         [additionalInformation]="'Additional Information'"
-         (processorFinished)="onProcessorFinished($event)"
-         #logoInformation="appLogoInformation">HamiDev005</div>
-  </h1>
-  <p class="row justify-content-center">Demo Application</p>
+  <div class="app-title">
+    <h1 class="row justify-content-center">
+      <div>HamiDev005</div>
+    </h1>
+    <p class="row justify-content-center">Demo Application</p>
+  </div>
 
 </div>
 

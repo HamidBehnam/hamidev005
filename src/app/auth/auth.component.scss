@@ -12,9 +12,25 @@
     height: calc(100vh / 2);
     border-radius: 0;
     color: #848484;
+    padding-top: 30px;
+    display: flex;
 
     h1 {
       color: #848484;
+    }
+
+    .app-title {
+      margin: auto;
+    }
+  }
+
+  .app-logo-holder {
+    position: absolute;
+
+    .app-logo {
+      width: 100px;
+      max-width: 100%;
+      height: auto;
     }
   }
 }
