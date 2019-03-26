@@ -15,7 +15,7 @@ export class AuthComponent implements OnInit, AfterViewInit {
   ngOnInit() {
   }
 
-  uiProcessorFinished(event) {
+  onProcessorFinished(event) {
     console.log('long-running UI processor finished: ', event);
   }
 

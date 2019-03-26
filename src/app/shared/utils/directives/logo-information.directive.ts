@@ -7,10 +7,10 @@ import {Directive, ElementRef, EventEmitter, HostListener, Input, Output} from '
 export class LogoInformationDirective {
   @Input() appLogoInformation: string;
   @Input() additionalInformation: string;
-  @Output() onProcessorFinished: EventEmitter<boolean>;
+  @Output() processorFinished: EventEmitter<boolean>;
 
   constructor(private elementRef: ElementRef) {
-    this.onProcessorFinished = new EventEmitter<boolean>();
+    this.processorFinished = new EventEmitter<boolean>();
   }
 
   @HostListener('click') printInformation(): void {
@@ -22,7 +22,7 @@ export class LogoInformationDirective {
   // this is to mimic a long running UI processor.
   longRunningProcessor() {
     setTimeout(() => {
-      this.onProcessorFinished.emit(true);
+      this.processorFinished.emit(true);
     }, 10000);
   }
 }
