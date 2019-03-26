@@ -9,6 +9,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {SharedModule} from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     SharedModule,
     AngularFireModule.initializeApp(environment.firebase),
