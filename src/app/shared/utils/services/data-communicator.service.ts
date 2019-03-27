@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {retry} from 'rxjs/operators';
+import {catchError, retry} from 'rxjs/operators';
 import {Params} from '@angular/router';
+import {HttpErrorHandlerService} from './http-error-handler.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataCommunicatorService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,  private httpErrorHandler: HttpErrorHandlerService) { }
 
   getComments(params?: Params) {
     return this.http
@@ -16,12 +17,16 @@ export class DataCommunicatorService {
         params
       })
       .pipe(
-        retry(3)
+        retry(3),
+        catchError(this.httpErrorHandler.handleError)
       );
   }
 
   getComment(id: number) {
     return this.http
-      .get(`https://jsonplaceholder.typicode.com/comments/${id}`);
+      .get(`https://jsonplaceholder.typicode.com/comments/${id}`)
+      .pipe(
+        catchError(this.httpErrorHandler.handleError)
+      );
   }
 }
