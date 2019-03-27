@@ -2,6 +2,8 @@
   organizations-list works! here's the list of received comments:
 </p>
 
-<p *ngFor="let comment of comments">{{comment | json}}</p>
+<p *ngFor="let comment of comments">
+  <a [routerLink]="['/organizations', comment.id]">{{comment.name}}</a>
+</p>
 
 
