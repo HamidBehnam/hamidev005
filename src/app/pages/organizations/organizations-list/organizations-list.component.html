@@ -3,7 +3,11 @@
 </p>
 
 <p *ngFor="let comment of comments">
-  <a [routerLink]="['/organizations', comment.id]">{{comment.name}}</a>
+  <nb-card>
+    <nb-card-body>
+      <a [routerLink]="['/organizations', comment.id]">{{comment.name}}</a>
+    </nb-card-body>
+  </nb-card>
 </p>
 
 

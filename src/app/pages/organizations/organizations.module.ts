@@ -5,12 +5,14 @@ import { OrganizationsListComponent } from './organizations-list/organizations-l
 import { OrganizationsDetailComponent } from './organizations-detail/organizations-detail.component';
 import {OrganizationsRoutingModule} from './organizations-routing.module';
 import {OrganizationsCoordinatorService} from './utils/services/organizations-coordinator.service';
+import {NbCardModule} from '@nebular/theme';
 
 @NgModule({
   declarations: [OrganizationsComponent, OrganizationsListComponent, OrganizationsDetailComponent],
   imports: [
     CommonModule,
-    OrganizationsRoutingModule
+    OrganizationsRoutingModule,
+    NbCardModule
   ],
   providers: [
     OrganizationsCoordinatorService

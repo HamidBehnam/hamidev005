@@ -10,6 +10,16 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 export class OrganizationsListComponent implements OnInit {
   comments: any[];
   currentFilterParams: Params;
+  sample = {
+    name: 'The Organization',
+    id: 1,
+    logo: '',
+    location: '',
+    profession: ['Profession1', 'Profession2', 'Profession3'],
+    members: '',
+    services: ['Service1', 'Service2', 'Service3'],
+    foundation_date: '02/03/2015'
+  };
 
   constructor(
     private organizationsCoordinator: OrganizationsCoordinatorService,
