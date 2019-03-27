@@ -1,13 +1,5 @@
-<p>
-  organizations-list works! here's the list of received comments:
-</p>
-
-<p *ngFor="let comment of comments">
-  <nb-card>
-    <nb-card-body>
-      <a [routerLink]="['/organizations', comment.id]">{{comment.name}}</a>
-    </nb-card-body>
-  </nb-card>
+<p *ngFor="let organization of organizations">
+  <app-organizations-list-item [organization]="organization"></app-organizations-list-item>
 </p>
 
 
