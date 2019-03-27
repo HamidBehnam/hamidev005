@@ -1,5 +1,7 @@
-<p *ngFor="let organization of organizations">
-  <app-organizations-list-item [organization]="organization"></app-organizations-list-item>
-</p>
+<div class="row">
+  <div class="col-xl-6" *ngFor="let organization of organizations">
+    <app-organizations-list-item [organization]="organization"></app-organizations-list-item>
+  </div>
+</div>
 
 
