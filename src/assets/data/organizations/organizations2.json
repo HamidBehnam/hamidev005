@@ -1,0 +1,39 @@
+{
+  "name": "The Organization 2",
+  "id": 2,
+  "logo": "https://picsum.photos/200/250/?image=20",
+  "location": "Los Angeles, CA",
+  "services": [{
+    "id": 1,
+    "name": "Service5",
+    "info": "Info for Services5",
+    "projects": "6"
+  }, {
+    "id": 2,
+    "name": "Service6",
+    "info": "Info for Services6",
+    "projects": "4"
+  }, {
+    "id": 3,
+    "name": "Service7",
+    "info": "Info for Services7",
+    "projects": "1"
+  }],
+  "members": [{
+    "id": 1,
+    "full_name": "John Smith2",
+    "profession": "Networking",
+    "member_since": "02/03/2018"
+  }, {
+    "id": 2,
+    "full_name": "Edward Smith2",
+    "profession": "Consulting",
+    "member_since": "07/04/2017"
+  }, {
+    "id": 3,
+    "full_name": "Eva Fork2",
+    "profession": "Instruction",
+    "member_since": "04/08/2016"
+  }],
+  "active_since": "02/03/2015"
+}

@@ -32,9 +32,17 @@ export class DataCommunicatorService {
 
   gerOrganizations() {
     return this.http
-      .get('/assets/data/organizations.json')
+      .get('/assets/data/organizations/organizations.json')
       .pipe(
         retry(3),
+        catchError(this.httpErrorHandler.handleError)
+      );
+  }
+
+  getOrganization(id: number) {
+    return this.http
+      .get(`/assets/data/organizations/organizations${id}.json`)
+      .pipe(
         catchError(this.httpErrorHandler.handleError)
       );
   }

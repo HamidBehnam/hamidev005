@@ -8,12 +8,12 @@ const routes: Routes = [{
   path: '',
   component: PagesComponent,
   children: [{
-    path: 'people',
-    loadChildren: './people/people.module#PeopleModule'
-  }, {
     path: 'organizations',
     loadChildren: './organizations/organizations.module#OrganizationsModule',
     canActivate: [LoggedInGuard]
+  }, {
+    path: '**',
+    redirectTo: 'organizations'
   }]
 }];
 

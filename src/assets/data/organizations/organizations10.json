@@ -1,0 +1,39 @@
+{
+  "name": "The Organization 10",
+  "id": 10,
+  "logo": "https://picsum.photos/200/250/?image=100",
+  "location": "North Hollywood, CA",
+  "services": [{
+    "id": 1,
+    "name": "Service 29",
+    "info": "Info for Services 29",
+    "projects": "6"
+  }, {
+    "id": 2,
+    "name": "Service 30",
+    "info": "Info for Services 30",
+    "projects": "4"
+  }, {
+    "id": 3,
+    "name": "Service 31",
+    "info": "Info for Services 31",
+    "projects": "1"
+  }],
+  "members": [{
+    "id": 1,
+    "full_name": "John Smith 10",
+    "profession": "Networking",
+    "member_since": "02/03/2018"
+  }, {
+    "id": 2,
+    "full_name": "Edward Smith 10",
+    "profession": "Consulting",
+    "member_since": "07/04/2017"
+  }, {
+    "id": 3,
+    "full_name": "Eva Fork 10",
+    "profession": "Instruction",
+    "member_since": "04/08/2016"
+  }],
+  "active_since": "02/03/2015"
+}

@@ -11,6 +11,8 @@ export class OrganizationsCoordinatorService {
   selectedCommentId: Subject<number>;
   filterParamsSubject: Subject<Params>;
   organizations: BehaviorSubject<any>;
+  organization: BehaviorSubject<any>;
+  selectedOrganizationId: Subject<number>;
 
   constructor() {
     this.comments = new BehaviorSubject<any>([]);
@@ -18,5 +20,7 @@ export class OrganizationsCoordinatorService {
     this.selectedCommentId = new Subject<number>();
     this.filterParamsSubject = new Subject<Params>();
     this.organizations = new BehaviorSubject<any>([]);
+    this.organization = new BehaviorSubject<any>({});
+    this.selectedOrganizationId = new Subject<number>();
   }
 }

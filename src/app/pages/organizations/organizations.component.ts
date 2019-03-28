@@ -15,6 +15,7 @@ export class OrganizationsComponent implements OnInit {
   ngOnInit() {
     this.organizationsCoordinator.filterParamsSubject.subscribe(filterParams => this.getComments(filterParams));
     this.organizationsCoordinator.selectedCommentId.subscribe(selectedCommentId => this.getComment(selectedCommentId));
+    this.organizationsCoordinator.selectedOrganizationId.subscribe(selectedOrganizationId => this.getOrganization(selectedOrganizationId));
     this.getOrganizations();
   }
 
@@ -29,5 +30,10 @@ export class OrganizationsComponent implements OnInit {
 
   getOrganizations() {
     this.dataCommunicator.gerOrganizations().subscribe(data => this.organizationsCoordinator.organizations.next(data));
+  }
+
+  getOrganization(organizationId: number) {
+    this.organizationsCoordinator.organization.next({});
+    this.dataCommunicator.getOrganization(organizationId).subscribe(data => this.organizationsCoordinator.organization.next(data));
   }
 }
