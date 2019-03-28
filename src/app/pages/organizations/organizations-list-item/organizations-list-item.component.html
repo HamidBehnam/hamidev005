@@ -7,7 +7,9 @@
           <div class="col-sm-7">
             <div class="row">
               <div class="col-sm">
-                <h5 class="mt-0">{{ organization.name }}</h5>
+                <h5 class="mt-0">
+                  <a [routerLink]="['/organizations', organization.id]">{{ organization.name }}</a>
+                </h5>
               </div>
             </div>
             <div class="row">
@@ -23,7 +25,7 @@
         <div class="row details-first-row justify-content-between">
           <small class="col-sm-7  text-muted">{{ organization.location }}</small>
           <div class="col-sm-5 text-right">
-            <button nbButton outline [status]="'primary'" [size]="'xsmall'" [shape]="'rectangle'">More Details</button>
+            <button nbButton outline [status]="'primary'" [size]="'xsmall'" [shape]="'rectangle'" [routerLink]="['/organizations', organization.id]">More Details</button>
           </div>
         </div>
         <div class="row justify-content-between text-muted">

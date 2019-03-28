@@ -36,40 +36,6 @@ export class OrganizationsListComponent implements OnInit {
     active_since: '02/03/2012'
   }];
 
-  members = [{
-    id: 1,
-    full_name: 'John Smith',
-    profession: 'Networking',
-    member_since: '02/03/2018'
-  }, {
-    id: 2,
-    full_name: 'Edward Smith',
-    profession: 'Consulting',
-    member_since: '07/04/2017'
-  }, {
-    id: 3,
-    full_name: 'Eva Fork',
-    profession: 'Instruction',
-    member_since: '04/08/2016'
-  }];
-
-  services = [{
-    id: 1,
-    name: 'Service1',
-    info: 'Info for Services1',
-    projects: '3'
-  }, {
-    id: 2,
-    name: 'Service2',
-    info: 'Info for Services2',
-    projects: '6'
-  }, {
-    id: 3,
-    name: 'Service3',
-    info: 'Info for Services3',
-    projects: '2'
-  }];
-
   constructor(
     private organizationsCoordinator: OrganizationsCoordinatorService,
     private route: ActivatedRoute,
