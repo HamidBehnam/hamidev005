@@ -10,11 +10,13 @@ export class OrganizationsCoordinatorService {
   comments: BehaviorSubject<any>;
   selectedCommentId: Subject<number>;
   filterParamsSubject: Subject<Params>;
+  organizations: BehaviorSubject<any>;
 
   constructor() {
     this.comments = new BehaviorSubject<any>([]);
     this.comment = new BehaviorSubject({});
     this.selectedCommentId = new Subject<number>();
     this.filterParamsSubject = new Subject<Params>();
+    this.organizations = new BehaviorSubject<any>([]);
   }
 }

@@ -29,4 +29,13 @@ export class DataCommunicatorService {
         catchError(this.httpErrorHandler.handleError)
       );
   }
+
+  gerOrganizations() {
+    return this.http
+      .get('/assets/data/organizations.json')
+      .pipe(
+        retry(3),
+        catchError(this.httpErrorHandler.handleError)
+      );
+  }
 }
