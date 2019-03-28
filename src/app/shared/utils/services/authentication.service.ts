@@ -1,54 +1,65 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
-import {Subject} from 'rxjs';
+import {BehaviorSubject} from 'rxjs';
+import {AuthenticationStatus} from '../enums/authentication-status.enum';
+import {AuthenticationData} from '../interfaces/authentication-data';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private _authenticatedUser: object;
-  private _userDataIsLoaded: boolean;
-  private _userDataAnnouncer: Subject<boolean>;
+  public authenticationAnnouncer: BehaviorSubject<AuthenticationData>;
+  private authenticationData: AuthenticationData;
 
   constructor(private angularFireAuth: AngularFireAuth) {
 
-    this._authenticatedUser = null;
-    this._userDataIsLoaded = false;
     this.init();
   }
 
   init() {
 
-    this._userDataAnnouncer = new Subject<boolean>();
+    this.authenticationData = {
+      authorizationStatus: AuthenticationStatus.Loading,
+      userData: null
+    };
+
+    this.authenticationAnnouncer = new BehaviorSubject<AuthenticationData>(this.authenticationData);
 
     this.angularFireAuth.user.subscribe(result => {
 
-      this._authenticatedUser = result;
-      this._userDataIsLoaded = true;
-      this._userDataAnnouncer.next(!!result);
+      this.authenticationData.authorizationStatus = !!result ?
+        AuthenticationStatus.Authorized :
+        AuthenticationStatus.NotAuthorized;
+
+      this.authenticationData.userData = result;
+
+      this.authenticationAnnouncer.next(this.authenticationData);
     }, () => {
 
-      this._authenticatedUser = null;
-      this._userDataIsLoaded = true;
-      this._userDataAnnouncer.next(false);
+      this.authenticationData.authorizationStatus = AuthenticationStatus.NotAuthorized;
+
+      this.authenticationData.userData = null;
+
+
+      this.authenticationAnnouncer.next(this.authenticationData);
     });
   }
 
-  get userDataIsLoaded(): boolean {
-    return this._userDataIsLoaded;
+  get userDataIsLoading() {
+    return this.authenticationData.authorizationStatus === AuthenticationStatus.Loading;
   }
 
-  get userIsAuthenticated(): boolean {
-    return !!this._authenticatedUser;
+  get userIsAuthorized() {
+    return this.authenticationData.authorizationStatus === AuthenticationStatus.Authorized;
   }
 
-  get userDataAnnouncer(): Subject<boolean> {
-    return this._userDataAnnouncer;
+  get userIsNotAuthorized() {
+    return this.authenticationData.authorizationStatus === AuthenticationStatus.NotAuthorized;
   }
 
-  get authenticatedUser(): object {
-    return this._authenticatedUser;
+  get userData() {
+    return this.authenticationData.userData;
   }
 
   signInGoogle() {

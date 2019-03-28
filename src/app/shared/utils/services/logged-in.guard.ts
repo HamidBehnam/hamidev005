@@ -1,38 +1,37 @@
-import { Injectable } from '@angular/core';
-import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
-import {Observable, Subject} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {Observable} from 'rxjs';
 import {AuthenticationService} from './authentication.service';
 import {NbDialogService} from '@nebular/theme';
 import {ProtectedContentModalComponent} from '../../protected-content-modal/protected-content-modal.component';
+import {AuthenticationStatus} from '../enums/authentication-status.enum';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoggedInGuard implements CanActivate {
 
-  constructor(private authentication: AuthenticationService, private router: Router, private dialogService: NbDialogService) {}
+  constructor(private authenticationService: AuthenticationService, private router: Router, private dialogService: NbDialogService) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-    if (this.authentication.userDataIsLoaded) {
+    return new Observable<boolean>(observer => {
 
-      if (!this.authentication.userIsAuthenticated) {
-        this.navigateAndShowProtectedContentModal();
-      }
+      this.authenticationService.authenticationAnnouncer.subscribe(authorizationData => {
 
-      return this.authentication.userIsAuthenticated;
-    } else {
+        if (authorizationData.authorizationStatus !== AuthenticationStatus.Loading) {
 
-      this.authentication.userDataAnnouncer.subscribe(result => {
-        if (!result) {
-          this.navigateAndShowProtectedContentModal();
+          observer.next(authorizationData.authorizationStatus === AuthenticationStatus.Authorized);
+
+          if (authorizationData.authorizationStatus === AuthenticationStatus.NotAuthorized) {
+
+            this.navigateAndShowProtectedContentModal();
+          }
         }
       });
-
-      return this.authentication.userDataAnnouncer;
-    }
+    });
   }
 
   navigateAndShowProtectedContentModal() {

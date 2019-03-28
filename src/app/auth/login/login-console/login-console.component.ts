@@ -8,16 +8,16 @@ import {AuthenticationService} from '../../../shared/utils/services/authenticati
 })
 export class LoginConsoleComponent implements OnInit {
 
-  constructor(private authentication: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
   }
 
   signInGoogle() {
-    this.authentication.signInGoogle();
+    this.authenticationService.signInGoogle();
   }
 
   signOut() {
-    this.authentication.signOut();
+    this.authenticationService.signOut();
   }
 }
