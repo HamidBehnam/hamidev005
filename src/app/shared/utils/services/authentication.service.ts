@@ -63,10 +63,10 @@ export class AuthenticationService {
   }
 
   signInGoogle() {
-    this.angularFireAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    return this.angularFireAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
 
   signOut() {
-    this.angularFireAuth.auth.signOut();
+    return this.angularFireAuth.auth.signOut();
   }
 }

@@ -1,12 +1,18 @@
 <nb-layout>
   <nb-layout-header fixed>
-    <div>HamiDev</div>
-    <div>
-      <nb-actions size="medium">
-        <nb-action>
-          <nb-user [name]="'dfdfd'" [picture]="user?.picture"></nb-user>
-        </nb-action>
-      </nb-actions>
+    <div class="header-container">
+      <div>HamiDev</div>
+      <div *ngIf="authenticationService.userIsAuthorized">
+        <nb-actions size="medium">
+          <nb-action>
+            <nb-user [name]="authenticationService.userData.displayName"
+                     [picture]="authenticationService.userData.photoURL"></nb-user>
+          </nb-action>
+          <nb-action>
+            <a (click)="authenticationService.signOut()" nbButton [size]="'xsmall'" [shape]="'rectangle'">Logout</a>
+          </nb-action>
+        </nb-actions>
+      </div>
     </div>
   </nb-layout-header>
 
