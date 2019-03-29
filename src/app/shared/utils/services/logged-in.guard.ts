@@ -37,7 +37,9 @@ export class LoggedInGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-    return this.authentication;
+    return new Observable<boolean>(observer => {
+      this.authentication.subscribe(result => observer.next(result));
+    });
   }
 
   navigateAndShowProtectedContentModal() {
