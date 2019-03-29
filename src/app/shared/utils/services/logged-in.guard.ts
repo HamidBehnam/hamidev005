@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {AuthenticationService} from './authentication.service';
 import {NbDialogService} from '@nebular/theme';
 import {ProtectedContentModalComponent} from '../../protected-content-modal/protected-content-modal.component';
@@ -10,28 +10,34 @@ import {AuthenticationStatus} from '../enums/authentication-status.enum';
   providedIn: 'root'
 })
 export class LoggedInGuard implements CanActivate {
+  private authentication: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor(private authenticationService: AuthenticationService, private router: Router, private dialogService: NbDialogService) {}
+  constructor(private authenticationService: AuthenticationService, private router: Router, private dialogService: NbDialogService) {
+
+    this.init();
+  }
+
+  init() {
+
+    this.authenticationService.authenticationAnnouncer.subscribe(authorizationData => {
+
+      if (authorizationData.authorizationStatus !== AuthenticationStatus.Loading) {
+
+        this.authentication.next(authorizationData.authorizationStatus === AuthenticationStatus.Authorized);
+
+        if (authorizationData.authorizationStatus === AuthenticationStatus.NotAuthorized) {
+
+          this.navigateAndShowProtectedContentModal();
+        }
+      }
+    });
+  }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-    return new Observable<boolean>(observer => {
-
-      this.authenticationService.authenticationAnnouncer.subscribe(authorizationData => {
-
-        if (authorizationData.authorizationStatus !== AuthenticationStatus.Loading) {
-
-          observer.next(authorizationData.authorizationStatus === AuthenticationStatus.Authorized);
-
-          if (authorizationData.authorizationStatus === AuthenticationStatus.NotAuthorized) {
-
-            this.navigateAndShowProtectedContentModal();
-          }
-        }
-      });
-    });
+    return this.authentication;
   }
 
   navigateAndShowProtectedContentModal() {
