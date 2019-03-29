@@ -10,7 +10,7 @@ import {AuthenticationStatus} from '../../../shared/utils/enums/authentication-s
 })
 export class LoginConsoleComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) { }
+  constructor(public authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
   }

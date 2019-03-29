@@ -8,7 +8,7 @@ import {AuthenticationService} from '../shared/utils/services/authentication.ser
 })
 export class PagesComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(public authenticationService: AuthenticationService) { }
 
   ngOnInit() {
   }
