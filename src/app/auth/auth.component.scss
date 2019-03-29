@@ -27,10 +27,23 @@
   .app-logo-holder {
     position: absolute;
 
-    .app-logo {
-      width: 100px;
-      max-width: 100%;
-      height: auto;
-    }
+  }
+
+  .logo-general {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .app-logo {
+    width: 100px;
+  }
+
+  .github-logo {
+    width: 25px;
+  }
+
+  .linked-in-logo {
+    width: 30px;
+    margin-left: 10px
   }
 }
