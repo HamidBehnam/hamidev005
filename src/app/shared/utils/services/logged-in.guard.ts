@@ -10,35 +10,27 @@ import {AuthenticationStatus} from '../enums/authentication-status.enum';
   providedIn: 'root'
 })
 export class LoggedInGuard implements CanActivate {
-  private authentication: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor(private authenticationService: AuthenticationService, private router: Router, private dialogService: NbDialogService) {
-
-    this.init();
-  }
-
-  init() {
-
-    this.authenticationService.authenticationAnnouncer.subscribe(authorizationData => {
-
-      if (authorizationData.authorizationStatus !== AuthenticationStatus.Loading) {
-
-        this.authentication.next(authorizationData.authorizationStatus === AuthenticationStatus.Authorized);
-
-        if (authorizationData.authorizationStatus === AuthenticationStatus.NotAuthorized) {
-
-          this.navigateAndShowProtectedContentModal();
-        }
-      }
-    });
-  }
+  constructor(private authenticationService: AuthenticationService, private router: Router, private dialogService: NbDialogService) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
     return new Observable<boolean>(observer => {
-      this.authentication.subscribe(result => observer.next(result));
+
+      this.authenticationService.authenticationAnnouncer.subscribe(authorizationData => {
+
+        if (authorizationData.authorizationStatus !== AuthenticationStatus.Loading) {
+
+          observer.next(authorizationData.authorizationStatus === AuthenticationStatus.Authorized);
+
+          if (authorizationData.authorizationStatus === AuthenticationStatus.NotAuthorized) {
+
+            this.navigateAndShowProtectedContentModal();
+          }
+        }
+      });
     });
   }
 
